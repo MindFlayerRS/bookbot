@@ -1,4 +1,4 @@
-from stats import characters, count_words
+from stats import characters, count_words, create_and_sort
 
 
 def get_book_text(filepath):
@@ -9,16 +9,22 @@ def get_book_text(filepath):
 
 def main():
     content = get_book_text("books/frankenstein.txt")
-    print(count_words(content))
-    print(characters(content))
+    chars = characters(content)
+    sorted_list = create_and_sort(chars)
 
     print(
-        "============ BOOKBOT ============"
-        "Analyzing book found at books/frankenstein.txt..."
-        "----------- Word Count ----------"
-        f"Found {count_words(content)} total words"
+        "============ BOOKBOT ============\n"
+        "Analyzing book found at books/frankenstein.txt...\n"
+        "----------- Word Count ----------\n"
+        f"Found {count_words(content)} total words\n"
         "--------- Character Count -------"
     )
+
+    for item in sorted_list:
+        if item["char"].isalpha():
+            print(f"{item['char']}: {item['num']}")
+
+    print("============= END ===============")
 
 
 main()
